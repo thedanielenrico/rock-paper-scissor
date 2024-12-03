@@ -4,9 +4,12 @@ const humanChoiceButtons = Array.from(
 const resultsOutcomePara = document.getElementById("result-outcome");
 const computerScorePara = document.getElementById("computer-score");
 const humanScorePara = document.getElementById("human-score");
+
 let computerScore = 0;
 let humanScore = 0;
 let roundCount = 0;
+
+const choices = ["rock", "paper", "scissors"];
 
 humanChoiceButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -14,14 +17,9 @@ humanChoiceButtons.forEach((btn) => {
       playRound(btn.dataset.choiceType);
     } else {
       startNewGame();
-      resultsOutcomePara.innerHTML = `Game over! ${
-        humanScore > computerScore ? "human wins!" : "computer wins!"
-      }`;
     }
   });
 });
-
-const choices = ["rock", "paper", "scissors"];
 
 function getComputerChoice() {
   const choiceIndex = Math.floor(Math.random() * 3);
@@ -45,12 +43,12 @@ function playRound(humanChoice) {
 
   if (humanChoice === computerChoice) {
     resultsOutcome = "It's a tie!";
-  } else if (humanChoice === "rock" && computerChoice === "paper") {
+  } else if (
+    (humanChoice === "rock" && computerChoice === "paper") ||
+    (humanChoice === "paper" && computerChoice === "scissors")
+  ) {
     ++computerScore;
-    resultsOutcome = "You lose! Paper beats rock!";
-  } else if (humanChoice === "paper" && computerChoice === "scissors") {
-    ++computerScore;
-    resultsOutcome = "You lose! Scissors beats paper!";
+    resultsOutcome = `You lose! ${computerChoice} beats ${humanChoice}`;
   } else {
     ++humanScore;
     resultsOutcome = `You win! ${humanChoice} beats ${computerChoice}`;
@@ -67,6 +65,9 @@ function showButton(btn) {
 }
 
 function startNewGame() {
+  resultsOutcomePara.innerHTML = `Game over! ${
+    humanScore > computerScore ? "human wins!" : "computer wins!"
+  }`;
   humanChoiceButtons.forEach((btn) => {
     hideButton(btn);
   });
