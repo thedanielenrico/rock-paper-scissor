@@ -1,0 +1,52 @@
+body {
+  background-color: antiquewhite;
+}
+
+main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  max-height: 450px;
+  button {
+    padding: 4px 12px;
+    border: 2px solid white;
+    border-radius: 8px;
+    background-color: darkseagreen;
+    color: white;
+  }
+  button:hover {
+    cursor: pointer;
+  }
+}
+
+#start-new-game {
+  display: none;
+}
+
+.results {
+  flex: 1;
+  max-height: 200px;
+  max-width: 200px;
+  height: 100%;
+  border: 1px solid black;
+  border-radius: 5%;
+  padding: 12px;
+}
+
+.scores {
+  h4 {
+    margin: 2px 0;
+  }
+  p {
+    margin: 2px 0;
+  }
+}
